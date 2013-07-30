@@ -7,7 +7,7 @@
 
 ## Usage
 
-It accepts object with `request` and `response` keys in format used by [Gavel](https://github.com/apiaryio/gavel.js) and returns it back in [API Blueprint format](http://apiblueprint.org)
+It accepts object with `request` and `response` keys in format used by [Gavel](https://github.com/apiaryio/gavel) and returns it back in [API Blueprint format](http://apiblueprint.org)
 
 - [Request format](https://www.relishapp.com/apiary/gavel/v/1-0/docs/data-model#http-request)
 - [Response format](https://www.relishapp.com/apiary/gavel/v/1-0/docs/data-model#http-response)
