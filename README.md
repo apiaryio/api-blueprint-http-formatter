@@ -82,7 +82,7 @@ console.log(blueprint);
 
 ```
 
-Use [Protagoinst](https://github.com/apiaryio/protagonist), Api Blueprint Node.js parser to parse or canonical [Snowcrash](https://github.com/apiaryio/snowcrash) parser to get Blueprint AST
+Use [Protagonist](https://github.com/apiaryio/protagonist), Api Blueprint Node.js parser to parse or canonical [Snowcrash](https://github.com/apiaryio/snowcrash) parser to get Blueprint AST
 
 ## API Reference
 
