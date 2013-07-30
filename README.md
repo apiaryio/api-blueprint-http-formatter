@@ -1,48 +1,90 @@
-# npm-boilerplate
+# HTTP API Blueprint formater
 
-[![Build Status](https://travis-ci.org/apiaryio/npm-boilerplate.png)](https://travis-ci.org/apiaryio/npm-boilerplate)
-[![Dependency Status](https://david-dm.org/apiaryio/npm-boilerplate.png)](https://david-dm.org/apiaryio/npm-boilerplate)
-[![devDependency Status](https://david-dm.org/apiaryio/npm-boilerplate/dev-status.png)](https://david-dm.org/apiaryio/npm-boilerplate#info=devDependencies)
+[![Build Status](https://travis-ci.org/apiaryio/api-blueprint-http-formatter.png)](https://travis-ci.org/apiaryio/api-blueprint-http-formatter)
+[![Dependency Status](https://david-dm.org/apiaryio/api-blueprint-http-formatter.png)](https://david-dm.org/apiaryio/api-blueprint-http-formatter)
+[![devDependency Status](https://david-dm.org/apiaryio/api-blueprint-http-formatter/dev-status.png)](https://david-dm.org/apiaryio/api-blueprint-http-formatter#info=devDependencies)
 
 
-## Scripts
+## Usage
 
-- `scripts/bdd` - watch on file changes and run Mocha tests if some file changes 
-- `scripts/build` - remove `/lib` directory and render `.coffee` files from `/src`
-- `scripts/prepublish` - run test and if passed then build
-- `scripts/test` - run tests
+It accepts object with `request` and `response` keys in format used by [Gavel](https://github.com/apiaryio/gavel.js) and returns it back in [API Blueprint format](http://apiblueprint.org)
 
-## Edit defaults
+- [Request format](https://www.relishapp.com/apiary/gavel/v/1-0/docs/data-model#http-request)
+- [Response format](https://www.relishapp.com/apiary/gavel/v/1-0/docs/data-model#http-response)
 
-- Edit package name in Travis-CI and David-DM badges in this readme
-- Edit package json:
-	- package `name`
-	- pacakge `description`
-	- path to your `main` file
-	- `version`
-	- `author`
-	- `keywords`
-	- `repository`
-	- `homepage`
-	- do not forget to add possible executables to `bin` section
 
-## Add example usage 
+# Example usage
 
 ```javascript
-var boilerplate = require('npm-boilerplate');
+var bf = require('./src/api-blueprint-http-formatter');
+var post = {
+  "request": {
+    "method": "POST",
+    "uri": "/shopping-cart",
+    "headers": {
+      "User-Agent": "curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8x zlib/1.2.5",
+      "Host": "curltraceparser.apiary.io",
+      "Accept": "*/*",
+      "Content-Type": "application/json",
+      "Content-Length": "39"
+    },
+    "body": "{ \"product\":\"1AB23ORM\", \"quantity\": 2 }"
+  },
+  "response": {
+    "statusCode": "201",
+    "statusMessage": "Created",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "Sun, 21 Jul 2009 14:51:09 GMT",
+      "X-Apiary-Ratelimit-Limit": "120",
+      "X-Apiary-Ratelimit-Remaining": "119",
+      "Content-Length": "50",
+      "Connection": "keep-alive"
+    },
+    "body": "{ \"status\": \"created\", \"url\": \"/shopping-cart/2\" }"
+  }
+};
 
-boilerplate = boilerplate.boil(something);
-
-console.log(boilerplate);
+blueprint = bf.format(post);
+console.log(blueprint);
 ```
 
-See more additional description
+## Output is a API Blueprint
 
-## Add API Reference
+```
+# POST /shopping-cart
++ Request
+    + Headers
 
-`boil(something)` - boils a plate
+            User-Agent:curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8x zlib/1.2.5
+            Host:curltraceparser.apiary.io
+            Accept:*/*
+            Content-Type:application/json
+            Content-Length:39
 
-- - - 
+    + Body
 
-NOTE: Add some possible note
+            { "product":"1AB23ORM", "quantity": 2 }
+
++ Response 201
+    + Headers
+
+            Content-Type:application/json
+            Date:Sun, 21 Jul 2009 14:51:09 GMT
+            X-Apiary-Ratelimit-Limit:120
+            X-Apiary-Ratelimit-Remaining:119
+            Content-Length:50
+            Connection:keep-alive
+
+    + Body
+
+            { "status": "created", "url": "/shopping-cart/2" }
+
+```
+
+Use [Protagoinst](https://github.com/apiaryio/protagonist), Api Blueprint Node.js parser to parse or canonical [Snowcrash](https://github.com/apiaryio/snowcrash) parser to get Blueprint AST
+
+## API Reference
+
+`format(pair)` - returns string with message pair in API blueprint format
 

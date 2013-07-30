@@ -1,26 +1,28 @@
 {
-  "name": "npm-boilerplate",
+  "name": "api-blueprint-http-formatter",
   "version": "0.0.1",
-  "description": "Some usefull description",
-  "main": "lib/npm-boilerplate.js",
+  "description": "Format pair of HTTP Request and Response to API Blueprint format",
+  "main": "lib/api-blueprint-http-formatter.js",
   "scripts": {
     "test": "scripts/test",
     "prepublish": "scripts/prepublish"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/apiaryio/npm-boilerplate"
+    "url": "https://github.com/apiaryio/api-blueprint-http-formatter"
   },
   "dependencies": {
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
     "mocha": "1.11.0",
-    "chai": "1.7.1"
+    "chai": "1.7.1",
+    "protagonist": "0.1.0"
   },
   "keywords": [
-    "npm",
-    "boilerplate"
+    "api",
+    "blueprint",
+    "http"
   ],
   "author": "Adam Kliment <adam@apiary.io>",
   "license": "MIT"
